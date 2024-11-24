@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: stomper
+  labels:
+    app: stomper
+spec:
+  serviceName: "stomper"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stomper
+  template:
+    metadata:
+      labels:
+        app: stomper
+    spec:
+      containers:
+      - name: stomper
+        image: localhost/stomper:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
